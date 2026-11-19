@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { isConfigured, supabase } from './supabase';
 
 const TEAM_PLACEHOLDER = 'Choose an MLB team';
