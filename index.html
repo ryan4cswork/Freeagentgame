@@ -6,9 +6,36 @@
     <meta name="theme-color" content="#101b2d" />
     <meta name="description" content="Free Agent Game — predict where MLB free agents will sign." />
     <title>Free Agent Game</title>
+    <style>
+      html,body{margin:0;min-height:100%;background:#0a1220;color:#f3f6fb;font-family:system-ui,sans-serif}
+      #startup-message{min-height:100vh;display:grid;place-content:center;text-align:center;padding:24px;box-sizing:border-box}
+      #startup-message p{color:#aab8ca}
+    </style>
+    <script>
+      function showStartupError(message) {
+        var root = document.getElementById('root');
+        if (!root) return;
+        root.innerHTML = '';
+        var wrap = document.createElement('div');
+        wrap.id = 'startup-message';
+        var title = document.createElement('h2');
+        title.textContent = 'Free Agent Game could not start';
+        var detail = document.createElement('p');
+        detail.textContent = String(message || 'Unknown browser error').slice(0, 500);
+        wrap.append(title, detail);
+        root.append(wrap);
+      }
+      window.addEventListener('error', function(event) {
+        showStartupError(event.message || 'A script failed to load. Please refresh and try again.');
+      });
+      window.addEventListener('unhandledrejection', function(event) {
+        var reason = event.reason;
+        showStartupError(reason && reason.message ? reason.message : reason || 'An unexpected startup error occurred.');
+      });
+    </script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"><div id="startup-message"><div><h2>Free Agent Game</h2><p>Starting the game…</p></div></div></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
